@@ -1,0 +1,369 @@
+import os
+
+def clear_terminal():
+    """Membersihkan terminal"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+print("""
+     =======================================================
+     |      Selamat Datang di Toko Bunga Hias Rafalia      |
+     |               Silahkan Registrasi!                  |
+     =======================================================
+    """)
+
+# Penyimpanan Data
+users = []
+data_bunga = []
+
+# Registrasi
+while True:
+    nama = input("Masukkan nama: ")
+    password = input("Masukkan password: ")
+    pilihan = input("Masukkan pilihan (admin/pelanggan): ")
+
+    if pilihan not in ["admin", "pelanggan"]:
+        print("Pilih pilihan admin atau pelanggan.")
+        continue
+    
+    # Cek username sudah ada
+    nama_sudah_ada = False
+    for user in users:
+        if user[0] == nama: 
+            nama_sudah_ada = True
+            break
+    
+    if username_sudah_ada:
+        print("Ups nama sudah ada yang pakai, silahkan coba lagi")
+        continue
+
+    users.append([nama, password, pilihan])
+    print("Registrasi berhasil!")
+    break
+
+# Login System
+login_attempt = 0
+while login_attempt < 3:
+    clear_terminal()
+    print("================= Login Toko Bunga Rafalia =========================")
+    nama_in = input("Masukkan nama : ")
+    password_in = input("Masukkan Password : ")
+    
+    # Cek login
+    login_berhasil = False
+    user_pilihan = ""
+    current_user = None
+    
+    for user in users:
+        if user[0] == nama_in and user[1] == password_in:
+            login_berhasil = True
+            user_pilihan = user[2]
+            current_user = user
+            break
+    
+    if login_berhasil:
+        clear_terminal()
+        print(f"Login berhasil! Selamat datang {nama_in}")
+        
+        if user_pilihan == "admin":
+            # MENU ADMIN
+            while True:
+                print("""
+                    ==================================================
+                    [         TOKO BUNGA HIAS RAFALIA - ADMIN        ]
+                    ==================================================
+                    [1. TAMBAH DATA BUNGA                            ]
+                    [2. LIHAT DATA BUNGA                             ]
+                    [3. UBAH DATA BUNGA                              ]
+                    [4. HAPUS DATA BUNGA                             ]
+                    [5. KELUAR                                       ]
+                    ===================================================
+                    """)
+                
+                pilihan_input = input("PILIH MENU (1-5): ")
+                
+                if pilihan_input == "1":
+                    # CREATE - Tambah data bunga
+                    clear_terminal()
+                    print("--- TAMBAH DATA BUNGA ---")
+                    nama_bunga = input("Nama Bunga: ")
+                    harga_bunga = input("Harga: ")
+                    stok_bunga = input("Stok: ")
+                    warna_bunga = input("Warna: ")
+                    
+                    # Validasi input angka
+                    if not harga_bunga.isdigit() or not stok_bunga.isdigit():
+                        print("Harga dan stok harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    data_bunga.append([nama_bunga, int(harga_bunga), int(stok_bunga), warna_bunga])
+                    print(f"Bunga {nama_bunga} berhasil ditambahkan!")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                    
+                elif pilihan_input == "2":
+                    # READ - Lihat data bunga
+                    clear_terminal()
+                    print("--- DATA BUNGA RAFALIA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                    else:
+                        for i in range(len(data_bunga)):
+                            print(f"\nBunga ke-{i+1}")
+                            print(f"NAMA   : {data_bunga[i][0]}")
+                            print(f"HARGA  : Rp {data_bunga[i][1]:,}")
+                            print(f"STOK   : {data_bunga[i][2]}")
+                            print(f"WARNA  : {data_bunga[i][3]}")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "3":
+                    # UPDATE - Ubah data bunga
+                    clear_terminal()
+                    print("--- UBAH DATA BUNGA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    # Tampilkan data dulu
+                    for i in range(len(data_bunga)):
+                        print(f"{i+1}. {data_bunga[i][0]}")
+                    
+                    pilih_bunga = input("Pilih nomor bunga yang akan diubah: ")
+                    
+                    if not pilih_bunga.isdigit():
+                        print("Input harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    index = int(pilih_bunga) - 1
+                    
+                    if index < 0 or index >= len(data_bunga):
+                        print("Nomor tidak valid!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    print(f"\nMengubah data: {data_bunga[index][0]}")
+                    nama_baru = input("Nama baru: ")
+                    harga_baru = input("Harga baru: ")
+                    stok_baru = input("Stok baru: ")
+                    warna_baru = input("Warna baru: ")
+                    
+                    # Validasi input angka
+                    if not harga_baru.isdigit() or not stok_baru.isdigit():
+                        print("Harga dan stok harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    data_bunga[index][0] = nama_baru
+                    data_bunga[index][1] = int(harga_baru)
+                    data_bunga[index][2] = int(stok_baru)
+                    data_bunga[index][3] = warna_baru
+                    
+                    print("Data berhasil diubah!")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "4":
+                    # DELETE - Hapus data bunga
+                    clear_terminal()
+                    print("--- HAPUS DATA BUNGA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    # Tampilkan data dulu
+                    for i in range(len(data_bunga)):
+                        print(f"{i+1}. {data_bunga[i][0]}")
+                    
+                    pilih_bunga = input("Pilih nomor bunga yang akan dihapus: ")
+                    
+                    if not pilih_bunga.isdigit():
+                        print("Input harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    index = int(pilih_bunga) - 1
+                    
+                    if index < 0 or index >= len(data_bunga):
+                        print("Nomor tidak valid!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    nama_bunga = data_bunga[index][0]
+                    data_bunga.pop(index)
+                    print(f"Bunga {nama_bunga} berhasil dihapus!")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "5":
+                    clear_terminal()
+                    print("Terima kasih telah mengelola Toko Bunga Rafalia!")
+                    break
+                
+                else:
+                    print("Pilihan tidak valid!")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+        
+        elif user_role == "pelanggan":
+            # MENU PELANGGAN
+            while True:
+                print(f"""
+                    ==================================================
+                    [    TOKO BUNGA HIAS RAFALIA - PELANGGAN         ]
+                    ==================================================
+                    [1. LIHAT KATALOG BUNGA                          ]
+                    [2. CARI BUNGA                                   ]
+                    [3. BELI BUNGA                                   ]
+                    [4. KELUAR                                       ]
+                    ===================================================
+                    """)
+                
+                pilihan_input = input("PILIH MENU (1-4): ")
+                
+                if pilihan_input == "1":
+                    # LIHAT KATALOG
+                    clear_terminal()
+                    print("--- KATALOG BUNGA RAFALIA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                    else:
+                        for i in range(len(data_bunga)):
+                            print(f"\nBunga ke-{i+1}")
+                            print(f"NAMA   : {data_bunga[i][0]}")
+                            print(f"HARGA  : Rp {data_bunga[i][1]:,}")
+                            print(f"STOK   : {data_bunga[i][2]}")
+                            print(f"WARNA  : {data_bunga[i][3]}")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "2":
+                    # CARI BUNGA
+                    clear_terminal()
+                    print("--- CARI BUNGA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    nama_cari = input("Masukkan nama bunga yang dicari: ")
+                    ditemukan = False
+                    
+                    for i in range(len(data_bunga)):
+                        if nama_cari.lower() in data_bunga[i][0].lower():
+                            print(f"\nBunga ditemukan:")
+                            print(f"NAMA   : {data_bunga[i][0]}")
+                            print(f"HARGA  : Rp {data_bunga[i][1]:,}")
+                            print(f"STOK   : {data_bunga[i][2]}")
+                            print(f"WARNA  : {data_bunga[i][3]}")
+                            ditemukan = True
+                    
+                    if not ditemukan:
+                        print("Bunga tidak ditemukan!")
+                    
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "3":
+                    # BELI BUNGA
+                    clear_terminal()
+                    print("--- BELI BUNGA ---")
+                    if len(data_bunga) == 0:
+                        print("Belum ada data bunga!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    # Tampilkan bunga yang ada stok
+                    print("Bunga tersedia:")
+                    for i in range(len(data_bunga)):
+                        if data_bunga[i][2] > 0:
+                            print(f"{i+1}. {data_bunga[i][0]} - Rp {data_bunga[i][1]:,} - Stok: {data_bunga[i][2]}")
+                    
+                    pilih_bunga = input("Pilih nomor bunga yang akan dibeli: ")
+                    
+                    if not pilih_bunga.isdigit():
+                        print("Input harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    index = int(pilih_bunga) - 1
+                    
+                    if index < 0 or index >= len(data_bunga):
+                        print("Nomor tidak valid!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    if data_bunga[index][2] <= 0:
+                        print("Maaf, stok habis!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    jumlah_beli = input("Jumlah yang dibeli: ")
+                    
+                    if not jumlah_beli.isdigit():
+                        print("Input harus angka!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    jumlah = int(jumlah_beli)
+                    
+                    if jumlah > data_bunga[index][2]:
+                        print(f"Stok tidak cukup! Stok tersedia: {data_bunga[index][2]}")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    if jumlah <= 0:
+                        print("Jumlah harus lebih dari 0!")
+                        input("Tekan enter untuk melanjutkan...")
+                        clear_terminal()
+                        continue
+                    
+                    total_harga = data_bunga[index][1] * jumlah
+                    data_bunga[index][2] -= jumlah
+                    
+                    print(f"\nPembelian berhasil!")
+                    print(f"Bunga    : {data_bunga[index][0]}")
+                    print(f"Jumlah   : {jumlah}")
+                    print(f"Total    : Rp {total_harga:,}")
+                    print("Terima kasih telah berbelanja di Rafalia!")
+                    
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+                
+                elif pilihan_input == "4":
+                    clear_terminal()
+                    print("Terima kasih telah berbelanja di Toko Bunga Rafalia!")
+                    break
+                
+                else:
+                    print("Pilihan tidak valid!")
+                    input("Tekan enter untuk melanjutkan...")
+                    clear_terminal()
+        
+        break  # Keluar dari loop login setelah berhasil
+    
+    else:
+        print("Login gagal. Username atau password salah.")
+        login_attempt += 1
+        input("Tekan enter untuk melanjutkan...")
+
+if login_attempt == 3:
+    print("Terlalu banyak percobaan login. Silahkan ulangi program.")

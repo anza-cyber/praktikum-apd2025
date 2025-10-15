@@ -1,0 +1,58 @@
+nama1 = "Rafalia"
+nama2 = "Sabrina"
+nama1 = nama2
+
+print("Masukkan nama anda")
+nama = input()
+print("Masukkan umur anda")
+umur = int(input())
+print("Seberapa sering memikirkannya? (0-100): ")
+memikirkanDia = int(input())
+if memikirkanDia >= 80:
+    print("Detak jantung cepat ketika bersamanya? (1=Ya, 0=Tidak): ")
+    detakJantungCepat = int(input())
+    print("Sering tersenyum spontan? (1=Ya, 0=Tidak): ")
+    senyumSpontan = int(input())
+    if detakJantungCepat == 1 and senyumSpontan == 1:
+        print("jatuh cinta")
+    else:
+        print("kagum biasa")
+else:
+    print("tidak jatuh cinta")
+print("Hati masih berdetak untuknya? (1=Ya, 0=Tidak): ")
+hatiMasihBerdetak = int(input())
+while hatiMasihBerdetak == 1:
+    print("temani belajar")
+    print("buat ketawa")
+    print("Masih berdetak? (1=Ya, 0=Tidak): ")
+    hatiMasihBerdetak = int(input())
+print("kenangan tersimpan")
+print("Berapa jumlah hari bahagia?: ")
+jumlahHari = int(input())
+for hari in range(1, jumlahHari + 1, 1):
+    print("Hari ke-" + str(hari))
+    print("Bahagia bersama Rafa")
+    print("Kenangan ditambahkan ke list_kenangan")
+print("Total kenangan indah: " + str(jumlahHari))
+print("List kenangan tersimpan di memori hati.")
+print("Apakah cinta itu nyata? (1=Ya, 0=Tidak): ")
+cintaItuNyata = int(input())
+if cintaItuNyata == 1:
+    print("Mengapa rasa sakit ini ada?")
+    print("Mengapa aku merasa sendiri?")
+else:
+    print("Aku telah salah membaca tanda.")
+print("Rafa menjelaskan: tugas akhir dan tekanan keluarga membuatnya menjauh.")
+print("Rina mengingat kenangan satu per satu.")
+print("Try: jalani hari dengan janji")
+print("Catch: jika kesulitan muncul, kita hadapi bersama")
+print("Finally: kita tetap bersama")
+print("Rina mengingat kenangan satu per satu")
+print("Janji kami: ('bersama', 'selalu', 'walau_berbeda_arah')")
+print("Versi 2.0: Patch kesabaran, BugFix ego, Feature komunikasi")
+print("Apakah kisah cinta ini mulus? (1=Ya, 0=Tidak): ")
+kisahKamiCintaItuMulus = int(input())
+if kisahKamiCintaItuMulus == 1:
+    print("Kita akan terus bersama")
+else:
+    print("Aku bersyukur pernah mencintaimu")

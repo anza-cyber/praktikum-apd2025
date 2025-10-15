@@ -1,0 +1,28 @@
+import os
+import time
+
+def bersihkan_terminal():
+    "Bersihin layar biar rapi aja"
+    os.system('cls' if os.name == 'nt' else 'celar')
+
+print("""====================================================
+     |      Selamat Datang di Toko Bunga Hias Rafalia      |
+     |               Yuk Daftar Dulu!                      |
+     ======================================================= """)
+
+data_pengguna = []
+kumpulan_bunga =[]
+while True:
+    nama =input(" Buat nama Anda: ")
+    for nama in data_pengguna:
+        if nama [0] == data_pengguna:
+            print(" Waduh Nama Pengguna sudah ada yang pakai tuch ")
+            break
+        else:
+            password = input("Buat password mu : ")
+            role = input("Mau daftar sebagai apa? (admin/pelanggan): ")
+            
+            if role not in ["admin", "pelanggan"]:
+             print("Pilihannya cuma admin atau pelanggan ya gk ada yang lain!")
+            continue
+        
