@@ -282,7 +282,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="iLCH0hyb_LNQhybp0r5k-94" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="371" y="1830" width="99" height="70" as="geometry" />
+          <mxGeometry x="372" y="1830" width="99" height="70" as="geometry" />
         </mxCell>
         <mxCell id="iLCH0hyb_LNQhybp0r5k-98" value="" style="endArrow=none;html=1;rounded=1;fontColor=default;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
